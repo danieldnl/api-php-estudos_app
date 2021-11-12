@@ -4,15 +4,18 @@ define('API_BASE', 'http://localhost/api/?OPTION=');
 
 echo '<p>APLICAÇÃO</p>';
 
-$resultado = api_request('random');
+for ($i=0; $i < 10; $i++) { 
+    $resultado = api_request('random&min=10000&max=10001');
 
-if ($resultado['status'] == 'ERROR') {
-    die('Erro na chamada da API!');
+    if ($resultado['status'] == 'ERROR') {
+        die('Erro na chamada da API!');
+    }
+
+    echo "Valor randômico: {$resultado['data']}<br>";
 }
 
-echo '<pre>';
-print_r($resultado);
-echo '</pre>';
+echo 'Processamento finalizado!';
+
 
 function api_request($option)
 {
